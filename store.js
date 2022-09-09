@@ -21,7 +21,7 @@ const addLaptopToMenu=(laptop)=>{
     laptopsElement.appendChild(laptopElement);
 }
 
-// Here I added event listner to the selected laptop from the menu
+// Here I added event listener to the selected laptop from the menu
 const handleLaptopMenuChange= e => {
     const selectedLaptop= laptops[e.target.selectedIndex];
     descriptionElement.innerText= selectedLaptop.description;
@@ -30,18 +30,27 @@ const handleLaptopMenuChange= e => {
 laptopsElement.addEventListener("change",handleLaptopMenuChange)
 // -------------------------------------------------------------------------------------------------------------------------------
 
-// working on work button to increase pay balance.
+//  (work) button to increase pay balance 100 for every click
 const payElement=document.getElementById("work");
 const addWorkElement=document.getElementById("addWork");
-
-let test = 0;
-// function to add work 100 by 100
+const balanceElement = document.getElementById("balance");
+const bankElement = document.getElementById("bankButton");
+// Add work 100 by 100 and transfer work amount to bank balance, then reset pay
+let work = 0
+payElement.innerHTML=0;
+balanceElement.innerHTML=0;
 const handleAddWork= () => {
-    console.log("clicked" );
-    test+= 100;
-   payElement.innerHTML=test;
-    
-   // const quantity = workQuantity.innerTex
+    work+= 100;
+   payElement.innerHTML=work;
+   // Transfer work amount
+   const transferMoney = () => {
+       balanceElement.innerHTML=work;
+       payElement.innerHTML=0;  
+   }
+   bankElement.addEventListener("click",transferMoney);  
 }
-
 addWorkElement.addEventListener("click",handleAddWork);
+
+
+
+
