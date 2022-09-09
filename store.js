@@ -10,7 +10,10 @@ fetch(" https://noroff-komputer-store-api.herokuapp.com/computers")
 .then(laptops=>addlaptopsToMenu(laptops))
 
 const addlaptopsToMenu= (laptops)=> {
-    laptops.forEach( x =>addLaptopToMenu(x))}
+    laptops.forEach( x =>addLaptopToMenu(x))
+    descriptionElement.innerHTML=laptops[0].description;
+
+}
 
 const addLaptopToMenu=(laptop)=>{
     const laptopElement= document.createElement("option");
@@ -26,3 +29,19 @@ const handleLaptopMenuChange= e => {
 
 laptopsElement.addEventListener("change",handleLaptopMenuChange)
 // -------------------------------------------------------------------------------------------------------------------------------
+
+// working on work button to increase pay balance.
+const payElement=document.getElementById("work");
+const addWorkElement=document.getElementById("addWork");
+
+let test = 0;
+// function to add work 100 by 100
+const handleAddWork= () => {
+    console.log("clicked" );
+    test+= 100;
+   payElement.innerHTML=test;
+    
+   // const quantity = workQuantity.innerTex
+}
+
+addWorkElement.addEventListener("click",handleAddWork);
