@@ -73,6 +73,7 @@ addWorkElement.addEventListener("click",handleAddWork);
 // ------------------------  Get a loan ----------------------------------------------
 const getLoanElement= document.getElementById("getLoan");
 const outstandingElement =document.getElementById("outstandLoan");
+const rePayBtn= document.getElementById("repay");
 const getLoan = () =>{
     console.log("get loan test");
     const amountToPay = prompt("Please enter the amount you want to loan: ");
@@ -86,8 +87,34 @@ const getLoan = () =>{
         alert("You cannot get a loan more than double of your bank balance")
       }else {
         outstandingElement.innerHTML=amountToPay;
-
+        alert("You got the loan you applied for!") 
+        
+       
+    if (rePayBtn.style.display === "none") {
+            rePayBtn.style.display = "block";
+        } else {
+            rePayBtn.style.display = "none";
+        }        
       }
+
+      const rePayLoan = () =>{
+        console.log("test repay button");
+        let result=0;
+        if(amountToPay>= work){
+            result=amountToPay-work
+            balanceElement.innerHTML=0+"Kr";
+            outstandingElement.innerHTML=result;
+            alert("You repayed: "+work+ " and the amount still to pay is "+result);
+        }else {
+            result=work-amountToPay
+            balanceElement.innerHTML=result +"Kr";
+            outstandingElement.innerHTML=0 +"Kr";
+            alert("You payed yor loan and your balance account now is: "+ result);
+        }
+       
+    }
+
+    rePayBtn.addEventListener("click",rePayLoan);
       
 }
 
