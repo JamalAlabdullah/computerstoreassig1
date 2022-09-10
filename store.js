@@ -5,12 +5,15 @@ const descriptionElement=document.getElementById("descript");
 
 let laptops =[];
 let loans=[];
+let balanceAccount=0;
 
 
 const imageElement= document.getElementById("laptopImage"); 
 const titleElement= document.getElementById("infLaptopTitle");  
 const priceElement= document.getElementById("price"); 
 const descElement= document.getElementById("desc");
+
+const balanceElement = document.getElementById("balance");
 
 
 // This section to deal with showing the laptops through selected menu and 
@@ -38,20 +41,48 @@ const handleLaptopMenuChange= e => {
     const selectedLaptop= laptops[e.target.selectedIndex];
     descriptionElement.innerText= selectedLaptop.description;   
     //https://dog.ceo/api/breeds/image/random
+    /*
     fetch("https://noroff-komputer-store-api.herokuapp.com/")
     .then(response => response.json())
     .then(result => imageElement.src=result.message)
+    */
 
     titleElement.innerHTML=selectedLaptop.title;
     descElement.innerHTML=selectedLaptop.description;
-    priceElement.innerHTML= selectedLaptop.price;   
+    priceElement.innerHTML= selectedLaptop.price; 
+  
+    
+    // -------------------------  Handle (Buy Now) button --------------------------------------
+    const buyNowElement = document.getElementById("buyNowbtn");
+   
+    const handleBuyNowBtn = () => {
+        if ( balanceAccount < selectedLaptop.price ) {
+            alert("Your balance account is not sufficient for this purchase");       
+        }else{
+            balanceAccount -= selectedLaptop.price;
+            balanceElement.innerHTML= balanceAccount;
+            alert("You are now the owner of the new laptop!");
+        }
+    }
+    buyNowElement.addEventListener("click",handleBuyNowBtn);
 }
 laptopsElement.addEventListener("change",handleLaptopMenuChange)
 // ---------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 //  (work) button to increase pay balance 100 for every click
 const payElement=document.getElementById("work");
 const addWorkElement=document.getElementById("addWork");
-const balanceElement = document.getElementById("balance");
+//const balanceElement = document.getElementById("balance");
 const bankElement = document.getElementById("bankButton");
 
 const outstandingElement =document.getElementById("outstandLoan");
@@ -74,7 +105,9 @@ const handleAddWork= () => {
      }
      */
        balanceElement.innerHTML=work+" Kr";
-       payElement.innerHTML=0+" Kr";  
+       payElement.innerHTML=0+" Kr"; 
+       balanceAccount=work;
+
    }
    bankElement.addEventListener("click",transferMoney);  
 }
@@ -132,21 +165,8 @@ const getLoan = () =>{
     
         rePayBtn.addEventListener("click",rePayLoan);
 
-    }
-   
-
-   
+    }  
      
 }
-
-
-
-
-
-
-
 getLoanElement.addEventListener("click",getLoan);
-
-
-
 
