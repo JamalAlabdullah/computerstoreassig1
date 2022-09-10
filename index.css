@@ -6,12 +6,16 @@
 
 .infoCard{
     margin-top: 50px;
+    
 }
 
 
-.colLaptop {
 
-    width: auto;
-    height: auto;
+.priceAndBuyBtn{
+    text-align: end;
+    
+   
+    
+    
 }
-
+  

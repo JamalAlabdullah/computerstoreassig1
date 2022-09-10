@@ -16,66 +16,79 @@
           <span style="color:white" class="navbar-brand mb-0 h1">Computer Store</span>
         </div>
       </nav>
-
+      <div class="container">
     <div class="row">
+       <!-------------------Bank------------------------------------------>
         <div class="col-sm-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Bank</h5> 
-              <span>Balance</span>
-              <span id="balance"></span> 
-              <br>   
-              <a href="#" style="background-color:#90EE90" class="btn btn-primary">Get a loan</a>
+              <hr>
+              <span>Balance:</span>
+              <span id="balance" style="padding-left:60px"></span> 
+              <br>
+              <span>outstanding Loan:</span>
+              <span id="outstandLoan"></span> 
+              <br> 
+              <br> 
+              <a id="getLoan" href="#" style="background-color:#90EE90; color:black" class="btn btn-primary">Get a loan</a>
             </div>
           </div>
         </div>
-
+        <!-------------------work------------------------------------------>
         <div class="col-sm-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Work</h5>
-              <span>Pay </span> 
-              <span id="work"></span> 
-              
+              <hr>
+              <span>Pay:</span> 
+              <span id="work" style="padding-left:90px"></span> 
               <br>
-              <a href="#" id ="bankButton" style ="background-color: #EDD94C;" class="btn btn-primary">Bank</a> <a href="#" id="addWork" class="btn btn-primary">Work</a>         
+              <br>
+              <a href="#" id ="bankButton" style ="background-color: #EDD94C; color:black ;margin-right:10px "
+              class="btn btn-primary">Bank</a> <a href="#" id="addWork" class="btn btn-primary">Work</a>         
             </div>
           </div>
         </div>
-
-        <div class=" colLaptop col-sm-3">
+         <!-------------------Laptops------------------------------------------>
+        <div class="col-sm-3">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Laptops</h5>
+                <hr>
+                <select name= "laptops" id ="laptops" style="margin-bottom:8%;"></select>
                 <br>
-                <select name= "laptops" id ="laptops"></select>
                 <br>
-                <br>
-                <span id="descript"></span>
+                 <span id="descript" style="font-size:small"></span>
               </div>
             </div>
           </div>
+
       </div>
+       <!-------------------Info------------------------------------------>
 
-      <br>
-
-      <!-- to show laptop information in a card-->
-      <div class=" card infoCard  mb-3 " style="max-width: 540px;">
+      <div class=" card infoCard  mb-3 " style="max-width: 700px;">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="..." class="img-fluid rounded-start" alt="...">
+            <img  id ="laptopImage" src="" class="img-fluid rounded-start" alt="Laptop image">
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text ........</p>
-              <a href="#" style ="background-color: #add8e6;" class="btn btn-primary">BUY NOW</a>
+              <h5 id ="infLaptopTitle" class="card-title"></h5>
+              
+              <p  id ="desc" class="card-text"></p>
             </div>
+        </div>
+        
+        <div class="priceAndBuyBtn">
+          <div class="card-body">
+            <h5 id = "price" class="card-title"></h5>
+            <a href="#" style ="background-color: #63d1e4; color:black" class="btn btn-primary">BUY NOW</a>
           </div>
         </div>
       </div>
     
-    
+    </div>
 
      <script src="store.js" type="module"> </script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
