@@ -1,10 +1,10 @@
 
-
 const laptopsElement=document.getElementById("laptops");
 const descriptionElement=document.getElementById("descript");
+
+
 let laptops =[];
-
-
+let loans=[];
 
 
 const imageElement= document.getElementById("laptopImage"); 
@@ -48,12 +48,13 @@ const handleLaptopMenuChange= e => {
 }
 laptopsElement.addEventListener("change",handleLaptopMenuChange)
 // ---------------------------------------------------------------------------------
-
 //  (work) button to increase pay balance 100 for every click
 const payElement=document.getElementById("work");
 const addWorkElement=document.getElementById("addWork");
 const balanceElement = document.getElementById("balance");
 const bankElement = document.getElementById("bankButton");
+
+const outstandingElement =document.getElementById("outstandLoan");
 // Add work 100 by 100 and transfer work amount to bank balance, then reset pay
 let work = 0
 payElement.innerHTML=0+" Kr";
@@ -63,6 +64,15 @@ const handleAddWork= () => {
    payElement.innerHTML=work+" Kr";
    // Transfer work amount
    const transferMoney = () => {
+    // before transfer money, I check if there is already outstanding loan, 
+    // if there is, then i deducted 10 % of salary and transfer it to outstanding
+    
+    /*
+     if (outstandingElement.innerHTML!=""){
+        let deductedAmount=(work*10)/100;
+        outstandingElement.innerHTML+=deductedAmount;
+     }
+     */
        balanceElement.innerHTML=work+" Kr";
        payElement.innerHTML=0+" Kr";  
    }
@@ -72,51 +82,68 @@ addWorkElement.addEventListener("click",handleAddWork);
 
 // ------------------------  Get a loan ----------------------------------------------
 const getLoanElement= document.getElementById("getLoan");
-const outstandingElement =document.getElementById("outstandLoan");
+
 const rePayBtn= document.getElementById("repay");
+
 const getLoan = () =>{
-    console.log("get loan test");
-    const amountToPay = prompt("Please enter the amount you want to loan: ");
-    if (amountToPay == "") {
-        alert("Amount can not be empty.");
-      } else {
-        //alert("You entered: " + amountToPay);
-      }
-      if(amountToPay > work*2){
-        console.log(work*2);
-        alert("You cannot get a loan more than double of your bank balance")
-      }else {
-        outstandingElement.innerHTML=amountToPay;
-        alert("You got the loan you applied for!") 
+    if(loans.length!=0){
+        alert("You cannot get more than one bank loan")
         
-       
-    if (rePayBtn.style.display === "none") {
-            rePayBtn.style.display = "block";
-        } else {
-            rePayBtn.style.display = "none";
-        }        
-      }
+    }else{
+        const amountToPay = prompt("Please enter the amount you want to loan: ");
+        if (amountToPay == "") {
+            alert("Amount can not be empty.");
+          } else {
+            //alert("You entered: " + amountToPay);
+          }
+          if(amountToPay > work*2){
+            
+            alert("You cannot get a loan more than double of your bank balance")
+          }else {
+            outstandingElement.innerHTML=amountToPay +" Kr";
+            alert("You got the loan you applied for!") 
+            loans.push(amountToPay);
+            console.log(loans);   
 
-      const rePayLoan = () =>{
-        console.log("test repay button");
-        let result=0;
-        if(amountToPay>= work){
-            result=amountToPay-work
-            balanceElement.innerHTML=0+"Kr";
-            outstandingElement.innerHTML=result;
-            alert("You repayed: "+work+ " and the amount still to pay is "+result);
-        }else {
-            result=work-amountToPay
-            balanceElement.innerHTML=result +"Kr";
-            outstandingElement.innerHTML=0 +"Kr";
-            alert("You payed yor loan and your balance account now is: "+ result);
+        if (rePayBtn.style.display === "none") {
+                rePayBtn.style.display = "block";
+            } else {
+                rePayBtn.style.display = "none";
+            }        
+          }
+          const rePayLoan = () =>{
+            console.log("test repay button");
+            let result=0;
+            if(amountToPay>= work){
+                result=amountToPay-work
+                balanceElement.innerHTML=0+"Kr";
+                outstandingElement.innerHTML=result+" Kr";
+                loans.length=0;
+                alert("You repayed: "+work+ " and the amount still to pay is "+result);
+            }else {
+                result=work-amountToPay
+                balanceElement.innerHTML=result +" Kr";
+                outstandingElement.innerHTML=0 +" Kr";
+                loans.length=0;
+                alert("You payed your loan and your balance account now is: "+ result);
+            }
+           
         }
-       
-    }
+    
+        rePayBtn.addEventListener("click",rePayLoan);
 
-    rePayBtn.addEventListener("click",rePayLoan);
-      
+    }
+   
+
+   
+     
 }
+
+
+
+
+
+
 
 getLoanElement.addEventListener("click",getLoan);
 
