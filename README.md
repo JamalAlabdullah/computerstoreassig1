@@ -11,6 +11,7 @@ This project is an assignment in Java Script course at Noroff. the project is a 
 
 
 ## Visuals
+![GET_LOAN](C:\Users\JAlabd\frontendProjects\assignment1\computerstoreassig1\getLoanImage.PNG)
 
 
 ## Installation
