@@ -9,11 +9,6 @@ Computer Store .
 Let people know what your project can do specifically.
 This project is an assignment in Java Script course at Noroff. the project is a computer store webpage where the user can store funds and make bank loans, In addition to deposit cash into bank balance, and finally to choose the laptop and by it according to what the user has in the account balance. 
 
-
-## Visuals
-![GET_LOAN](C:\Users\JAlabd\frontendProjects\assignment1\computerstoreassig1\getLoanImage.PNG)
-
-
 ## Installation
 To run this projects, you need VSC and live server extension. the programming language is Java Script and Node.js installed, in addition to bootstrap v5 for easy responsive design. 
 
