@@ -4,8 +4,9 @@ const descriptionElement=document.getElementById("descript");
 
 
 let laptops =[];
-let loans=[];
+let loans=0;
 let balanceAccount=0;
+
 
 
 const imageElement= document.getElementById("laptopImage"); 
@@ -24,6 +25,9 @@ fetch(" https://noroff-komputer-store-api.herokuapp.com/computers")
 .then(data => laptops=data)
 .then(laptops=>addlaptopsToMenu(laptops))
 
+
+
+
 const addlaptopsToMenu= (laptops)=> {
     laptops.forEach( x =>addLaptopToMenu(x))
     descriptionElement.innerHTML=laptops[0].description;
@@ -41,11 +45,12 @@ const handleLaptopMenuChange= e => {
     const selectedLaptop= laptops[e.target.selectedIndex];
     descriptionElement.innerText= selectedLaptop.description;   
     //https://dog.ceo/api/breeds/image/random
-    /*
-    fetch("https://noroff-komputer-store-api.herokuapp.com/")
+    
+    fetch('https://noroff-komputer-store-api.herokuapp.com/')
     .then(response => response.json())
-    .then(result => imageElement.src=result.message)
-    */
+    .then(result => {imageElement.src=result.message})
+    
+    
 
     titleElement.innerHTML=selectedLaptop.title;
     descElement.innerHTML=selectedLaptop.description;
@@ -92,24 +97,22 @@ payElement.innerHTML=0+" Kr";
 balanceElement.innerHTML=0+" Kr";
 const handleAddWork= () => {
     work+= 100;
+
    payElement.innerHTML=work+" Kr";
    // Transfer work amount
    const transferMoney = () => {
     // before transfer money, I check if there is already outstanding loan, 
-    // if there is, then i deducted 10 % of salary and transfer it to outstanding
-    
-    /*
-     if (outstandingElement.innerHTML!=""){
+    // if there is, then i deducted 10 % of salary and transfer it to outstanding  
+     if (loans!=0){
         let deductedAmount=(work*10)/100;
-        outstandingElement.innerHTML+=deductedAmount;
-     }
-     */
+        outstandingElement.innerHTML=parseInt(loans)+deductedAmount;
+     }  
        balanceElement.innerHTML=work+" Kr";
        payElement.innerHTML=0+" Kr"; 
        balanceAccount=work;
-
    }
-   bankElement.addEventListener("click",transferMoney);  
+   bankElement.addEventListener("click",transferMoney); 
+    
 }
 addWorkElement.addEventListener("click",handleAddWork);
 
@@ -119,7 +122,7 @@ const getLoanElement= document.getElementById("getLoan");
 const rePayBtn= document.getElementById("repay");
 
 const getLoan = () =>{
-    if(loans.length!=0){
+    if(loans!=0){
         alert("You cannot get more than one bank loan")
         
     }else{
@@ -135,7 +138,7 @@ const getLoan = () =>{
           }else {
             outstandingElement.innerHTML=amountToPay +" Kr";
             alert("You got the loan you applied for!") 
-            loans.push(amountToPay);
+            loans=amountToPay;
             console.log(loans);   
 
         if (rePayBtn.style.display === "none") {
@@ -151,13 +154,13 @@ const getLoan = () =>{
                 result=amountToPay-work
                 balanceElement.innerHTML=0+"Kr";
                 outstandingElement.innerHTML=result+" Kr";
-                loans.length=0;
+                loans=0;
                 alert("You repayed: "+work+ " and the amount still to pay is "+result);
             }else {
                 result=work-amountToPay
                 balanceElement.innerHTML=result +" Kr";
                 outstandingElement.innerHTML=0 +" Kr";
-                loans.length=0;
+                loans=0;
                 alert("You payed your loan and your balance account now is: "+ result);
             }
            
