@@ -1,21 +1,35 @@
 .navbar{
-  
-    margin-bottom: 50px;
+  background-color:#5d5351;
+    margin-bottom: 40px;
+    
+}
+
+.navbar-brand{
+    margin-left: 67px;
 }
 
 
 .infoCard{
-    margin-top: 50px;
+    margin-top: 40px;
+    margin-bottom: 90px;
+   
     
+}
+
+.card-title.price{
+    margin-bottom: 60px;
+    margin-right: 15px;
+   
 }
 
 
 
 .priceAndBuyBtn{
     text-align: end;
-    
-   
-    
-    
+       
 }
 
+.card{
+    background-color:antiquewhite;
+    box-shadow: 5px 5px 5px lightslategrey;
+}

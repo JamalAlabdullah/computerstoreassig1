@@ -30,6 +30,7 @@ fetch(" https://noroff-komputer-store-api.herokuapp.com/computers")
 
 const addlaptopsToMenu= (laptops)=> {
     laptops.forEach( x =>addLaptopToMenu(x))
+    
     descriptionElement.innerHTML=laptops[0].description;
 }
 
@@ -54,7 +55,7 @@ const handleLaptopMenuChange= e => {
 
     titleElement.innerHTML=selectedLaptop.title;
     descElement.innerHTML=selectedLaptop.description;
-    priceElement.innerHTML= selectedLaptop.price; 
+    priceElement.innerHTML= selectedLaptop.price+ " Kr"; 
   
     
     // -------------------------  Handle (Buy Now) button --------------------------------------
