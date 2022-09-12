@@ -2,18 +2,15 @@
 const laptopsElement=document.getElementById("laptops");
 const descriptionElement=document.getElementById("descript");
 
-
 let laptops =[];
 let loans=0;
 let balanceAccount=0;
-
 
 
 const imageElement= document.getElementById("laptopImage"); 
 const titleElement= document.getElementById("infLaptopTitle");  
 const priceElement= document.getElementById("price"); 
 const descElement= document.getElementById("desc");
-
 const balanceElement = document.getElementById("balance");
 
 
@@ -27,10 +24,8 @@ fetch(" https://noroff-komputer-store-api.herokuapp.com/computers")
 
 
 
-
 const addlaptopsToMenu= (laptops)=> {
     laptops.forEach( x =>addLaptopToMenu(x))
-    
     descriptionElement.innerHTML=laptops[0].description;
 }
 
@@ -40,18 +35,66 @@ const addLaptopToMenu=(laptop)=>{
     laptopsElement.appendChild(laptopElement);
 }
 
-// Here I added event listener to the selected laptop from the menu
-// show description in Laptops card and (title,price,description in Info card)
-const handleLaptopMenuChange= e => {
+//------------------------------test fetch image----------------------------------------
+
+const BASE_URL = "https://noroff-komputer-store-api.herokuapp.com/";
+function setCurrentLaptop(current) {
+    imageElement.innerHTML = "";
+
+    // Create and Add image
+    let laptopImage = document.createElement("img");
+    laptopImage.src = BASE_URL + current.image;
+    laptopImage.alt = "Computer";
+    laptopImage.style.width="200px";
+    laptopImage.style.height="200px";
+    laptopImage.style.marginLeft="150px";
+    laptopImage.onerror = () => { 
+        laptopImage.src = BASE_URL + current.image.replace("jpg", "png")
+    }
+    imageElement.append(laptopImage);
+
+}
+
+fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
+    .then((res) => res.json())
+    .then((json) => {
+       // setLaptops(json);
+        let initialLaptop = laptops[0];
+        setCurrentLaptop(initialLaptop);
+    });
+
+
+// ------------------------------------------------------------------------------------
+
+const handleLaptopMenuChange=  e => {
     const selectedLaptop= laptops[e.target.selectedIndex];
     descriptionElement.innerText= selectedLaptop.description;   
     //https://dog.ceo/api/breeds/image/random
+   
+   
     
-    fetch('https://noroff-komputer-store-api.herokuapp.com/')
+  
+      
+    /*
+
+      fetch('https://noroff-komputer-store-api.herokuapp.com/computers')
     .then(response => response.json())
     .then(result => {imageElement.src=result.message})
-    
-    
+
+
+     fetch('https://noroff-komputer-store-api.herokuapp.com/computers')
+    .then(response => response.json())
+    .then(result => {imageElement.src=result.message})
+
+    async function getResponse() {
+       let res=  await fetch('https://noroff-komputer-store-api.herokuapp.com/computers' )
+        .then(response => response.json())
+        .then(result => {imageElement.src=result.message})
+        return res;   
+    }
+    getResponse();
+    */
+//--------------------------------------------------------------------------------
 
     titleElement.innerHTML=selectedLaptop.title;
     descElement.innerHTML=selectedLaptop.description;
