@@ -20,6 +20,14 @@ fetch(" https://noroff-komputer-store-api.herokuapp.com/computers")
 const addlaptopsToMenu= (laptops)=> {
     laptops.forEach( x =>addLaptopToMenu(x))
     descriptionElement.innerHTML=laptops[0].description;
+    titleElement.innerHTML=laptops[0].title;
+    descElement.innerHTML=laptops[0].description;
+    priceElement.innerHTML= laptops[0].price+ " Kr"; 
+    const BASE_URL = "https://noroff-komputer-store-api.herokuapp.com/";
+    imageElement.style.width="200px";
+    imageElement.style.height="200px";
+    imageElement.style.marginLeft="px";
+    imageElement.src= BASE_URL+laptops[0].image
 }
 
 const addLaptopToMenu=(laptop)=>{
