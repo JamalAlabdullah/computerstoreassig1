@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="index.css">
   </head>
 <body>
-
     <nav class="navbar navbar-light">
         <div class="container-fluid">
           <span style="color:white" class="navbar-brand mb-0 h1">Computer Store</span>
@@ -66,6 +65,7 @@
                 <select name= "laptops" id ="laptops" style="margin-bottom:8%;"></select>
                 <br>
                 <br>
+                <h6>Feature:</h6>
                  <span id="descript" style="font-size:small"></span>
               </div>
             </div>
@@ -75,21 +75,10 @@
        <!-------------------Info------------------------------------------>
       <div class=" card infoCard  mb-3">
         <div class="row g-0">
-
-
-          <div class="col-md-4">
-
-            <div id ="laptopImage"></div>
-            
-            
-          </div>
-
-
-
-
-
-
-          <div class="col-md-8">
+         <div class="col-md-4">
+            <img id ="laptopImage" src="">
+        </div>
+  <div class="col-md-8">
             <div class="card-body">
               <h5 id ="infLaptopTitle" class="card-title"></h5>      
               <p  id ="desc" class="card-text"></p>
@@ -101,10 +90,8 @@
             <a id = "buyNowbtn" href="#" style ="background-color: #63d1e4; color:black" class="btn btn-primary">BUY NOW</a>
           </div>
         </div>
-      </div>
-    
+      </div> 
     </div>
-
      <script src="store.js" type="module"> </script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>

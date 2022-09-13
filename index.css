@@ -11,15 +11,14 @@
 
 .infoCard{
     margin-top: 40px;
-    margin-bottom: 90px;
-   
-    
+    margin-bottom: 90px;   
 }
 
 .card-title.price{
+    margin-top: -66px;
     margin-bottom: 30px;
     margin-right: 10px;
-   
+  
 }
 
 

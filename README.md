@@ -20,5 +20,8 @@ It is a public repository and open source projects.
 
 ## Project statuse
 
-It needs adding modules to separate the function and make refactoring. ssssuu7sssssssssfssser
+It needs adding modules to separate the function and make refactoring.
 
+## TO DO
+-Deployment to Heroku
+-Make modules & refactor
