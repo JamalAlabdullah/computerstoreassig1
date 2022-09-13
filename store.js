@@ -6,7 +6,6 @@ let laptops =[];
 let loans=0;
 let balanceAccount=0;
 
-
 const imageElement= document.getElementById("laptopImage"); 
 const titleElement= document.getElementById("infLaptopTitle");  
 const priceElement= document.getElementById("price"); 
@@ -37,50 +36,50 @@ const addLaptopToMenu=(laptop)=>{
 
 //------------------------------test fetch image----------------------------------------
 
-const BASE_URL = "https://noroff-komputer-store-api.herokuapp.com/";
-function setCurrentLaptop(current) {
-    imageElement.innerHTML = "";
-
-    // Create and Add image
-    let laptopImage = document.createElement("img");
-    laptopImage.src = BASE_URL + current.image;
-    laptopImage.alt = "Computer";
-    laptopImage.style.width="200px";
-    laptopImage.style.height="200px";
-    laptopImage.style.marginLeft="150px";
-    laptopImage.onerror = () => { 
-        laptopImage.src = BASE_URL + current.image.replace("jpg", "png")
-    }
-    imageElement.append(laptopImage);
-
-}
-
-fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
-    .then((res) => res.json())
-    .then((json) => {
-       // setLaptops(json);
-        let initialLaptop = laptops[0];
-        setCurrentLaptop(initialLaptop);
-    });
-
 
 // ------------------------------------------------------------------------------------
 
 const handleLaptopMenuChange=  e => {
     const selectedLaptop= laptops[e.target.selectedIndex];
-    descriptionElement.innerText= selectedLaptop.description;   
-    //https://dog.ceo/api/breeds/image/random
-   
+    descriptionElement.innerText= selectedLaptop.description;  
    
     
+    const BASE_URL = "https://noroff-komputer-store-api.herokuapp.com/";
+    function setCurrentLaptop(current) {
+        imageElement.innerHTML = "";
+        let laptopImage = document.createElement("img");
+        laptopImage.src = BASE_URL + current.image;
+        laptopImage.alt = "Computer";
+        laptopImage.style.width="200px";
+        laptopImage.style.height="200px";
+        laptopImage.style.marginLeft="150px";
+        laptopImage.onerror = () => { 
+            laptopImage.src = BASE_URL + current.image.replace("jpg", "png")
+        }
+        imageElement.append(laptopImage);
+    
+    }
+
+
+    function setLaptop(json){
+       
+    }
+    setLaptop();
+
   
+    fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
+        .then((res) => res.json())
+        .then((json) => { 
+           console.log(json);
+      
+           // setLaptops(json);
+            let initialLaptop = laptops[0];
+            setCurrentLaptop(initialLaptop);
+        });
+    
+    
       
     /*
-
-      fetch('https://noroff-komputer-store-api.herokuapp.com/computers')
-    .then(response => response.json())
-    .then(result => {imageElement.src=result.message})
-
 
      fetch('https://noroff-komputer-store-api.herokuapp.com/computers')
     .then(response => response.json())

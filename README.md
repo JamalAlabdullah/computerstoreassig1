@@ -18,5 +18,7 @@ through VSC the user can by right click turn on live server to open local URL, a
 ## License
 It is a public repository and open source projects.
 
-## Project status
+## Project statuse
+
+It needs adding modules to separate the function and make refactoring. ssssuu7sssssssssfssser
 
