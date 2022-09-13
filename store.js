@@ -1,16 +1,17 @@
 
 const laptopsElement=document.getElementById("laptops");
 const descriptionElement=document.getElementById("descript");
-
-let laptops =[];
-let loans=0;
-let balanceAccount=0;
-
 const imageElement= document.getElementById("laptopImage"); 
 const titleElement= document.getElementById("infLaptopTitle");  
 const priceElement= document.getElementById("price"); 
 const descElement= document.getElementById("desc");
 const balanceElement = document.getElementById("balance");
+
+let laptops =[];
+let loans=0;
+let balanceAccount=0;
+
+
 
 
 // This section to deal with showing the laptops through selected menu and 
@@ -36,63 +37,31 @@ const addLaptopToMenu=(laptop)=>{
 
 //------------------------------test fetch image----------------------------------------
 
-
-// ------------------------------------------------------------------------------------
-
 const handleLaptopMenuChange=  e => {
     const selectedLaptop= laptops[e.target.selectedIndex];
     descriptionElement.innerText= selectedLaptop.description;  
-   
-    
+      
     const BASE_URL = "https://noroff-komputer-store-api.herokuapp.com/";
-    function setCurrentLaptop(current) {
+    function addCurrLaptop(current) {
         imageElement.innerHTML = "";
         let laptopImage = document.createElement("img");
         laptopImage.src = BASE_URL + current.image;
         laptopImage.alt = "Computer";
         laptopImage.style.width="200px";
         laptopImage.style.height="200px";
-        laptopImage.style.marginLeft="150px";
+        laptopImage.style.marginLeft="10px";
         laptopImage.onerror = () => { 
             laptopImage.src = BASE_URL + current.image.replace("jpg", "png")
         }
-        imageElement.append(laptopImage);
-    
+        imageElement.append(laptopImage);  
     }
-
-
-    function setLaptop(json){
-       
-    }
-    setLaptop();
-
-  
     fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
         .then((res) => res.json())
         .then((json) => { 
-           console.log(json);
-      
-           // setLaptops(json);
-            let initialLaptop = laptops[0];
-            setCurrentLaptop(initialLaptop);
-        });
-    
-    
-      
-    /*
-
-     fetch('https://noroff-komputer-store-api.herokuapp.com/computers')
-    .then(response => response.json())
-    .then(result => {imageElement.src=result.message})
-
-    async function getResponse() {
-       let res=  await fetch('https://noroff-komputer-store-api.herokuapp.com/computers' )
-        .then(response => response.json())
-        .then(result => {imageElement.src=result.message})
-        return res;   
-    }
-    getResponse();
-    */
+             json.forEach(item => console.log((item)));
+           let initialLaptop = laptops[0];
+            addCurrLaptop(initialLaptop);
+        }); 
 //--------------------------------------------------------------------------------
 
     titleElement.innerHTML=selectedLaptop.title;
@@ -116,17 +85,6 @@ const handleLaptopMenuChange=  e => {
 }
 laptopsElement.addEventListener("change",handleLaptopMenuChange)
 // ---------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
 //  (work) button to increase pay balance 100 for every click
 const payElement=document.getElementById("work");
 const addWorkElement=document.getElementById("addWork");
@@ -198,7 +156,7 @@ const getLoan = () =>{
                 balanceElement.innerHTML=0+"Kr";
                 outstandingElement.innerHTML=result+" Kr";
                 loans=0;
-                alert("You repayed: "+work+ " and the amount still to pay is "+result);
+                alert("You repaid: "+work+ " and the amount still to pay is "+result);
             }else {
                 result=work-amountToPay
                 balanceElement.innerHTML=result +" Kr";
